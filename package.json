@@ -30,6 +30,6 @@
     "vite": "^6.2.0"
   },
     "lint-staged": {
-      "**/*.{js,ts,vue}": "eslint"
+      "**/*.{js,ts,vue}": "eslint ."
     }
 }
