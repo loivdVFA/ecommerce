@@ -5,7 +5,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(2)
-  // const sdk = '12';
+  const sdk = '12';
   return (
     <>
       <div>
