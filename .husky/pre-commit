@@ -1,2 +1,0 @@
-npx husky add .husky/pre-commit "echo '🔥 Husky pre-commit hook triggered!'"
-chmod +x .husky/pre-commit  
