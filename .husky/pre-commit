@@ -1,2 +1,2 @@
 npx husky add .husky/pre-commit "echo '🔥 Husky pre-commit hook triggered!'"
-chmod +x .husky/pre-commit  # Đảm bảo file có quyền thực thi
+chmod +x .husky/pre-commit
