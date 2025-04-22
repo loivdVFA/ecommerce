@@ -22,7 +22,7 @@ export default tseslint.config(
       "no-unused-vars": "off",
       'no-console': 'warn',
       "@typescript-eslint/no-unused-vars": "error",
-      "quotes": ["error", "single"]
+      // "quotes": ["error", "single"]
     },
   },
 )
