@@ -1,16 +1,26 @@
-name: Deploy EC2
+name: Deploy to EC2
+
 on:
   workflow_run:
-    workflows: ["Build and Test"]
-    types: 
+    workflows: ["Build and Test"] 
+    types:
       - completed
 
-
 jobs:
-  build:
-    name: Deploy Ec2
+  deploy:
+    name: Deploy to EC2
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: '20'
+
+      - name: Deploy to EC2
+        run: |
+          # Thực hiện các lệnh deploy EC2 của bạn ở đây
+          echo "Deploying to EC2..."
