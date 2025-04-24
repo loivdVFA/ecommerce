@@ -6,3 +6,11 @@ on:
       - completed
 
 
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run Lint
+        run: yarn lint
