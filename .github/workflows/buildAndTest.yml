@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - develop
-  pull_request:
+    pull_request:
 
 jobs:
   build:
@@ -62,4 +62,7 @@ jobs:
         run: yarn install
 
       - name: Run Lint
-        run: yarn lint 
+        run: yarn lint
+
+  trigger_deploy:
+      uses: ./.github/workflows/deploy.yml

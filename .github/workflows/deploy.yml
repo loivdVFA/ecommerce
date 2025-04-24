@@ -1,18 +1,15 @@
 name: Deploy to EC2
 
-on:
- push:
-    branches:
-      - develop
-    workflow_run:
-      workflows: ["Build and Test"]  
-      types:
-        - completed  
-
+on: workflow_call
+  # workflow_run:
+  #   workflows: ["Build and Test"]  
+  #   types:
+  #     - completed  
 jobs:
   deploy:
     name: Deploy to EC2
     runs-on: ubuntu-latest
+    needs: [build, test]
 
     steps:
       - name: Test EC2
