@@ -65,5 +65,5 @@ jobs:
         run: yarn lint
 
   trigger_deploy:
-      uses: ./.github/workflows/deploy.yml
+      # uses: ./.github/workflows/deploy.yml
       needs: [build, test]
