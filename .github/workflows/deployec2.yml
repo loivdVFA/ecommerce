@@ -5,6 +5,4 @@ on:
     types: 
       - completed
 
-jobs:
-
 
