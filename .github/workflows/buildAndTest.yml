@@ -1,4 +1,4 @@
-name: Build Test and Deploy EC2
+name: Build and Test
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build React App
+    name: Build React App 🧑‍💻
     runs-on: ubuntu-latest
 
     steps:
@@ -36,9 +36,8 @@ jobs:
           echo "Build Successful!"
 
   test:
-    name: Run Lint Tests
+    name: Run Lint Tests 📦
     runs-on: ubuntu-latest
-    needs: build 
 
     steps:
       - name: Checkout

@@ -1,0 +1,10 @@
+name: Deploy EC2
+on:
+  workflow_run:
+    workflows: ["Build and Test"]
+    types: 
+      - completed
+
+jobs:
+
+
