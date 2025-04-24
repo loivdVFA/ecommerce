@@ -1,6 +1,7 @@
 name: Deploy to EC2
 
-on: workflow_call
+on: 
+  workflow_call:
   # workflow_run:
   #   workflows: ["Build and Test"]  
   #   types:
