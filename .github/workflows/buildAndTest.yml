@@ -66,3 +66,4 @@ jobs:
 
   trigger_deploy:
       uses: ./.github/workflows/deploy.yml
+      needs: [build, test]
