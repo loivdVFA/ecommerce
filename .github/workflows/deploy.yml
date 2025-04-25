@@ -2,22 +2,15 @@ name: Deploy to EC2
 
 on: 
   workflow_dispatch:
-   inputs:
-    environment:
-          description: 'Where to deploy (e.g., staging, production)'
-          required: true
-          default: 'staging'
-  # workflow_run:
-  #   workflows: ["Build and Test"]  
-  #   types:
-  #     - completed  
+    inputs:
+      environment:
+        description: 'Environment to deploy (staging or production)'
+        required: true
+        default: 'staging'
+
 jobs:
   deploy:
-    name: Deploy to EC2
     runs-on: ubuntu-latest
-    # needs: [build, test]
-
     steps:
-      - name: Test EC2
-        run: |
-          echo "Deploying to EC2..."
+      - name: Deploy Step
+        run: echo "Deploying to ${{ github.event.inputs.environment }}!"
