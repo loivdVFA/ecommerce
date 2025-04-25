@@ -1,7 +1,6 @@
 name: Build and Test
 
 on:
-  # workflow_dispatch:
   push:
     branches:
       - develop
@@ -67,6 +66,6 @@ jobs:
       - name: Run Lint
         run: yarn lint
 
-  trigger_deploy:
-      uses: ./.github/workflows/deploy.yml
-      needs: [build, test]
+  # trigger_deploy:
+  #     uses: ./.github/workflows/deploy.yml
+  #     needs: [build, test]
