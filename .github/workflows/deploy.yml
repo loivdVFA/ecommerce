@@ -18,6 +18,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD  }}
 
        - name: Check Docker Login
-         run: docker info
+         run: |
+            docker info
+            echo "secrets.DOCKER_PASSWORD"
 
         
