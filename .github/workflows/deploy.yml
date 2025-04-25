@@ -1,7 +1,12 @@
 name: Deploy to EC2
 
 on: 
-  # workflow_call:
+  workflow_call:
+   inputs:
+    environment:
+          description: 'Where to deploy (e.g., staging, production)'
+          required: true
+          default: 'staging'
   # workflow_run:
   #   workflows: ["Build and Test"]  
   #   types:

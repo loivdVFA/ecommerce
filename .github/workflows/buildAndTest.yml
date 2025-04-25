@@ -5,6 +5,8 @@ on:
     branches:
       - develop
     pull_request:
+      branches:
+        - main
 
 jobs:
   build:
@@ -64,6 +66,6 @@ jobs:
       - name: Run Lint
         run: yarn lint
 
-  trigger_deploy:
-      uses: ./.github/workflows/deploy.yml
-      needs: [build, test]
+  # trigger_deploy:
+  #     uses: ./.github/workflows/deploy.yml
+  #     needs: [build, test]
