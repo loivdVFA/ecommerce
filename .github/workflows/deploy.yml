@@ -1,17 +1,7 @@
 name: Deploy to EC2
 
-on: 
-  workflow_dispatch:
-    ref: develop
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Test scenario tags'  
-      
-
+on: workflow_call
+  
 jobs:
   printInputs:
     runs-on: ubuntu-latest
