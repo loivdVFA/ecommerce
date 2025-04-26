@@ -15,9 +15,9 @@ on:
         default: 'warning'
         type: choice
         options:
-          - info
-          - warning
-          - debug
+          - dev
+          - stg
+          - prod
       print_tags:
         description: 'True to print to STDOUT'
         required: true
