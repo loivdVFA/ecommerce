@@ -7,18 +7,6 @@ on:
         required: true
       DOCKER_PASSWORD:
         required: true
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'environment'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-          - dev
-          - stg
-          - prod
-
 
 jobs:
   deploy:
