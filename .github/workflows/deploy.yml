@@ -29,11 +29,7 @@ on:
       environment:
         description: 'Environment to run tests against'
         required: true
-        type: choice
-        options:
-          - staging
-          - develop
-          - prod
+        type: environment
 
 jobs:
   deploy:
