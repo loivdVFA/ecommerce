@@ -8,6 +8,16 @@ on:
       DOCKER_PASSWORD:
         required: true
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - develop
+          - prod
 
 jobs:
   deploy:
@@ -27,3 +37,6 @@ jobs:
         run: |
           echo "Docker Login Successful!"
           docker info
+
+      - name: Show selected environment
+        run: echo "Deploying to ${{ github.event.inputs.environment }}"
