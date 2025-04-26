@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       logLevel:
-        description: 'Log level'
+        description: 'environment'
         required: true
         default: 'warning'
         type: choice
@@ -18,18 +18,7 @@ on:
           - dev
           - stg
           - prod
-      print_tags:
-        description: 'True to print to STDOUT'
-        required: true
-        type: boolean
-      tags:
-        description: 'Test scenario tags'
-        required: true
-        type: string
-      environment:
-        description: 'Environment to run tests against'
-        required: true
-        type: environment
+
 
 jobs:
   deploy:
