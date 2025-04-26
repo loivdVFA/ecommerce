@@ -1,6 +1,17 @@
 name: Build and Test
 
 on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'environment'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - dev
+          - stg
+          - prod
   push:
     branches:
       - develop
