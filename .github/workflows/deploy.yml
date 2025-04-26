@@ -9,10 +9,31 @@ on:
         required: true
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to deploy to (staging, develop, prod)'
+      logLevel:
+        description: 'Log level'
         required: true
-        default: 'staging'
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: true
+        type: boolean
+      tags:
+        description: 'Test scenario tags'
+        required: true
+        type: string
+      environment:
+        description: 'Environment to run tests against'
+        required: true
+        type: choice
+        options:
+          - staging
+          - develop
+          - prod
 
 jobs:
   deploy:
