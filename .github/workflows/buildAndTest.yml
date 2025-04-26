@@ -4,9 +4,10 @@ on:
   push:
     branches:
       - develop
-	pull_request:
-		branches:
-			- main
+  pull_request:
+    branches:
+      - main
+
 
 jobs:
   build:
@@ -69,3 +70,6 @@ jobs:
   trigger_deploy:
       uses: ./.github/workflows/deploy.yml
       needs: [build, test]
+      secrets:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
