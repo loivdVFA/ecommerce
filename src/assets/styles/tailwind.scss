@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {}
+@layer components {
+    .title-components {
+        @apply text-[25px] leading-[32px] sm:text-[30px] sm:leading-[40px] lg:text-[40px] lg:leading-[50px]  xl:text-xxxl xl:leading-xl capitalize;
+    }
+
+    .title-detail {
+        @apply text-[25px] leading-[30px] md:text-[30px] md:leading-[35px] lg:text-[48px] lg:leading-[54px];
+    }
+}
+@layer utilities {}
