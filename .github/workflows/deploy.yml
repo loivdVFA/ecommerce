@@ -49,15 +49,15 @@ jobs:
         env:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
-          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: |
           echo "$EC2_SSH_KEY" > ec2_key.pem
           chmod 600 ec2_key.pem
     
           ssh -o StrictHostKeyChecking=no -i ec2_key.pem ec2-user@$EC2_HOST << 'EOF'
-            docker pull DOCKER_USERNAME/my-react-app:latest
+            docker pull $DOCKER_USERNAME/my-react-app:latest
             docker stop myapp || true
             docker rm myapp || true
-            docker run -d -p 80:80 --name myapp DOCKER_USERNAME/my-react-app:latest
+            docker run -d -p 80:80 --name myapp $DOCKER_USERNAME/my-react-app:latest
             echo "🚀 Deployment done"
           EOF
