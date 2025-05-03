@@ -13,49 +13,50 @@ on:
         required: true
 
 jobs:
-  push_docker_hub:
-    runs-on: ubuntu-latest
+  # push_docker_hub:
+  #   runs-on: ubuntu-latest
+  #   name: Build and Push Docker Image
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Docker Login
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+  #     - name: Docker Login
+  #       uses: docker/login-action@v3
+  #       with:
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-            ${{ secrets.DOCKER_USERNAME }}/my-react-app:latest
-            ${{ secrets.DOCKER_USERNAME }}/my-react-app:v1.0.0
-            ${{ secrets.DOCKER_USERNAME }}/my-react-app:${{ github.sha }}
+  #     - name: Build and Push Docker Image
+  #       uses: docker/build-push-action@v5
+  #       with:
+  #         context: .
+  #         file: ./Dockerfile
+  #         push: true
+  #         tags: |
+  #           ${{ secrets.DOCKER_USERNAME }}/my-react-app:latest
+  #           ${{ secrets.DOCKER_USERNAME }}/my-react-app:v1.0.0
+  #           ${{ secrets.DOCKER_USERNAME }}/my-react-app:${{ github.sha }}
             
-  deploy_ec2:
+  Deploy:
+    name: Deploy to EC2
     runs-on: ubuntu-latest
     
     steps:
-      - name: SSH and Deploy to EC2
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            echo "==> Pull latest image"
-            docker pull ${{ secrets.DOCKER_USERNAME }}/my-react-app:latest
-
-            echo "==> Stop and remove old container"
+      - uses: actions/checkout@v2 
+      - name: Build & Deploy
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+        run: |
+          echo "$EC2_SSH_KEY" > ec2_key.pem
+          chmod 600 ec2_key.pem
+    
+          ssh -o StrictHostKeyChecking=no -i ec2_key.pem ec2-user@$EC2_HOST << 'EOF'
+            echo "✅ Connected to EC2"
+            docker pull voducloi01/my-react-app:latest
             docker stop myapp || true
             docker rm myapp || true
-
-            echo "==> Start new container"
-            docker run -d --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/my-react-app:latest
-
-            echo "==> Deployment complete!"   
+            docker run -d -p 80:80 --name myapp voducloi01/my-react-app:latest
+            echo "🚀 Deployment done"
+          EOF
