@@ -21,66 +21,66 @@ on:
 
 
 jobs:
-  # build:
-  #   name: Build React App 🧑‍💻
-  #   runs-on: ubuntu-latest
+  build:
+    name: Build React App 🧑‍💻
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  #     - name: setup node
-  #       uses: actions/setup-node@v4.4.0
-  #       with:
-  #         node-version: '20'
+      - name: setup node
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: '20'
 
-  #     - name: Cache Yarn
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: |
-  #           ~/.cache/yarn
-  #           node_modules
-  #         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-yarn-
+      - name: Cache Yarn
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/yarn
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-  #     - name: Install dependencies
-  #       run: |
-  #         yarn install
-  #         echo "Build Successful!"
+      - name: Install dependencies
+        run: |
+          yarn install
+          echo "Build Successful!"
 
-  # test:
-  #   name: Run Lint Tests 📦
-  #   runs-on: ubuntu-latest
+  test:
+    name: Run Lint Tests 📦
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v4.4.0
-  #       with:
-  #         node-version: '20'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: '20'
 
-  #     - name: Cache Yarn
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: |
-  #           ~/.cache/yarn
-  #           node_modules
-  #         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-yarn-
+      - name: Cache Yarn
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/yarn
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-  #     - name: Install dependencies
-  #       run: yarn install
+      - name: Install dependencies
+        run: yarn install
 
-  #     - name: Run Lint
-  #       run: yarn lint
+      - name: Run Lint
+        run: yarn lint
 
   trigger_deploy:
       uses: ./.github/workflows/deploy.yml
-      # needs: [build, test]
+      needs: [build, test]
       secrets:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
