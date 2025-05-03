@@ -7,6 +7,10 @@ on:
         required: true
       DOCKER_PASSWORD:
         required: true
+      EC2_HOST:
+        required: true
+      EC2_SSH_KEY:
+        required: true
 
 jobs:
   deploy:
